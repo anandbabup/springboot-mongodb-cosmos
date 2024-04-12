@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,6 +38,7 @@ public class KPDirectoryDaoImpl implements KPDirectoryDao {
 		newFavourite.setFavoriteDepartmentId(favoriteDeptId);
 		newFavourite.setFavoriteId(favoriteId);
 		newFavourite.setFavoriteType(favoriteType);
+		newFavourite.setCreatedDateTime(new Date());
 
 		favoritesRepository.save(newFavourite);
 	}
@@ -52,6 +54,7 @@ public class KPDirectoryDaoImpl implements KPDirectoryDao {
 		newFavourite.setFavoriteDepartmentId(favoriteDeptId);
 		newFavourite.setFavoriteId(favoriteId);
 		newFavourite.setFavoriteType(favoriteType);
+		newFavourite.setUpdateDateTime(new Date());
 
 		// Save the updated user
 		favoritesRepository.save(newFavourite);
@@ -59,10 +62,7 @@ public class KPDirectoryDaoImpl implements KPDirectoryDao {
 
 	@Override
 	public boolean isAlreadyAvailableFavorite(String userId, String favoriteId, String favoriteType) {
-		System.out.println(userId + " " + favoriteId + " " + favoriteType);
-		boolean test = favoritesRepository.existsByUserIdAndFavoriteIdAndFavoriteType(userId, favoriteId, favoriteType);
-		System.out.println("result===" + test);
-		return true;
+		return favoritesRepository.existsByUserIdAndFavoriteIdAndFavoriteType(userId, favoriteId, favoriteType);
 	}
 
 	@Override

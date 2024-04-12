@@ -11,8 +11,5 @@ import org.springframework.stereotype.Repository;
 public interface FavoriteRepository extends MongoRepository<FavoriteEntity, String> {
 	List<String> findFavoriteIdsByUserIdAndFavoriteType(String userId, String favoriteType);
 	void deleteByUserIdAndFavoriteIdAndFavoriteType(String userId, String favoriteId, String favoriteType); 
-	boolean existsByUserIdAndFavoriteIdAndFavoriteType(String userId, String favoriteId, String favoriteType); 
-	@Query("{'userId': ?0, 'favoriteId': ?1, 'favoriteType': ?2}")
-	void upsertFavorite(String userId, String favoriteId, String favoriteType);
-
+	boolean existsByUserIdAndFavoriteIdAndFavoriteType(String userId, String favoriteId, String favoriteType);
 }
